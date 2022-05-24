@@ -12,9 +12,9 @@ import { useState } from 'react';
 function App() {
   const [name,setname]=useState([""]);
 
-  const apiKey="654907ff6c88443893a189fb85bc1b65";
+  const apiKey="";
 
-  const url=`https://newsapi.org/v2/top-headlines?apiKey=654907ff6c88443893a189fb85bc1b65&category=general&country=in`;
+  const url=`https://newsapi.org/v2/top-headlines?apiKey=${apiKey}&category=general&country=in`;
  
  const xhr= new XMLHttpRequest();
  xhr.open("GET",url,true);

@@ -1,24 +1,44 @@
-import logo from './logo.svg';
+
 import './App.css';
+import Content from './content';
+import React from 'react';
+import { useState } from 'react';
+
+
+
+
+
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+  const [name,setname]=useState([""]);
+
+  const apiKey="654907ff6c88443893a189fb85bc1b65";
+
+  const url=`https://newsapi.org/v2/top-headlines?apiKey=654907ff6c88443893a189fb85bc1b65&category=general&country=in`;
+ 
+ const xhr= new XMLHttpRequest();
+ xhr.open("GET",url,true);
+ xhr.onload=function(){
+   let res=JSON.parse(this.responseText);
+   if(name.length===1)
+   {setname(res.articles);}
+   
+
+
+ }
+ xhr.send();
+ console.log(name);
+ 
+  return (<div className='container'>
+  
+    {name.map((ele,index)=>{
+      return <Content key={index} title={ele.title} des={ele.content} url={ele.url} index={index}/>;
+    })}
+  
+
+
+  </div>
+  
   );
 }
 
